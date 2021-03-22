@@ -56,6 +56,8 @@
   --focus-color: #2962ff;
   --error-color: red;
   --secondary-color: rgb(116, 116, 116);
+  --color-light: white;
+  --color-dark: #0d1117;
 }
 .todoCategory {
   background: rgb(255, 255, 255);
@@ -117,4 +119,61 @@
   color: black;
   background: rgb(251, 251, 251);
   border: 1px solid rgb(110, 110, 110);
+}
+
+body {
+  background: var(--color-light);
+  color: var(--color-dark);
+  transition: 0.4s;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body.dark {
+  background: var(--color-dark);
+  color: var(--color-light);
+}
+body.dark .randomHeader svg {
+  fill: white;
+}
+
+.randomHeader {
+  width: 100%;
+  clear: both;
+  margin-top: 25px;
+  display: inline-block;
+}
+.randomHeader > div {
+  float: right;
+}
+
+.authorContainer {
+  background: var(--color-dark);
+  color: var(--color-light);
+  padding: 10px 20px;
+  text-align: left;
+  transition: 0.4s;
+}
+.authorContainer:hover,
+.authorContainer:focus {
+  background: #1a222d;
+}
+
+.authorContainer h4,
+.authorContainer h6 {
+  margin: 0;
+  margin: 5px;
+}
+
+.authorContainer h6 {
+  font-weight: 400;
+}
+
+.quoteText {
+  border-left: 2px solid #bdae2a;
+  padding: 10px;
+}
+
+.quoteContainerTight {
+  max-width: 300px;
 }

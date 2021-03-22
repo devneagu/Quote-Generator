@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import Quote from "./Quote";
 const App = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container quoteContainerTight mx-auto">
       <Quote />
     </div>
   );
