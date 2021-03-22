@@ -163,19 +163,23 @@ body.dark .randomHeader svg {
 .authorContainer h6 {
   margin: 0;
   margin: 5px;
+  font-size: 1.4em;
 }
 
 .authorContainer h6 {
   font-weight: 400;
+  font-size: 1.1em;
 }
 
 .quoteText {
   border-left: 2px solid #bdae2a;
   padding: 10px;
+  font-weight: 100;
+  font-size: 1.5em;
 }
 
 .quoteContainerTight {
-  max-width: 300px;
+  max-width: 600px;
 }
 
 .hidden {
@@ -192,6 +196,6 @@ body.dark .svgDownload svg {
 }
 .svgDownload svg {
   float: right;
-  width: 10px;
+  width: 19px;
   height: auto;
 }
