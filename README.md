@@ -1,2 +1,4 @@
-# React Todo
-Demo https://60588d1904dd74992a3c8de5--mystifying-liskov-674188.netlify.app/
+# Quote Generator
+
+Demo:
+https://6059135d5652d70007565510--admiring-chandrasekhar-1ca5b4.netlify.app/
