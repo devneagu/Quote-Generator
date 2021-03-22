@@ -177,3 +177,21 @@ body.dark .randomHeader svg {
 .quoteContainerTight {
   max-width: 300px;
 }
+
+.hidden {
+  display: none;
+}
+.svgDownload {
+  margin: 0;
+  padding: 0;
+  margin: 5px;
+}
+
+body.dark .svgDownload svg {
+  fill: white;
+}
+.svgDownload svg {
+  float: right;
+  width: 10px;
+  height: auto;
+}

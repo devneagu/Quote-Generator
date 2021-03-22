@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import html2canvas from "html2canvas";
 
 const Quote = function Quote({ getRandomQuote }) {
   const [quoteList, setQuoteList] = useState([]);
   const [listType, setListType] = useState("quote");
+  const [screenshotId, setScreenshotId] = useState("");
 
   if (quoteList.length == 0) {
     let randomPage = parseInt(Math.random(Math.random()) * 70000);
@@ -54,6 +56,25 @@ const Quote = function Quote({ getRandomQuote }) {
         document.getElementsByTagName("body")[0].classList.remove("dark");
     }
   }, [listType]);
+
+  useEffect(() => {
+    if (screenshotId != "") captureElement(screenshotId);
+  }, [screenshotId]);
+
+  function captureElement(id) {
+    html2canvas(document.querySelector(".a" + id + " .elementScreenshot")).then(
+      (canvasElm) => {
+        var imageType = "image/jpeg";
+        var imageData = canvasElm.toDataURL(imageType);
+        var anchor = document.createElement("a");
+        anchor.setAttribute("class", "hidden");
+        anchor.setAttribute("download", "a" + id + ".png");
+        anchor.setAttribute("href", imageData);
+        anchor.click();
+      }
+    );
+  }
+
   return (
     <div>
       <div className="randomHeader">
@@ -74,15 +95,36 @@ const Quote = function Quote({ getRandomQuote }) {
       <div className="text-center mb-5">
         {quoteList.length > 0 ? (
           quoteList.map((item) => (
-            <div key={item._id}>
-              <p className="quoteText">{item.quoteText}</p>
-              <div
-                onClick={() => goToAuthor()}
-                className="authorContainer mx-auto"
-              >
-                <h4>{item.quoteAuthor}</h4>
-                <h6>{item.quoteGenre}</h6>
+            <div key={item._id} className={`a${item._id}`}>
+              <div className="elementScreenshot">
+                <p className="quoteText">{item.quoteText}</p>
+                <div
+                  onClick={() => goToAuthor()}
+                  className="authorContainer mx-auto"
+                >
+                  <h4>{item.quoteAuthor}</h4>
+                  <h6>{item.quoteGenre}</h6>
+                </div>
               </div>
+              <p
+                className="svgDownload"
+                onClick={() => setScreenshotId(item._id)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="feather feather-download"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </p>
             </div>
           ))
         ) : (
