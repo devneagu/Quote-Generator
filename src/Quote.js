@@ -14,7 +14,7 @@ const Quote = function Quote({ getRandomQuote }) {
       .then((data) => setQuoteList(data.data));
   }
   function getRandomQuote() {
-    let randomPage = parseInt(Math.random(Math.random()) * 70000);
+    let randomPage = parseInt(Math.random(Math.random()) * 7000);
     fetch(
       "https://quote-garden.herokuapp.com/api/v3/quotes?page=" +
         String(randomPage) +
@@ -22,6 +22,25 @@ const Quote = function Quote({ getRandomQuote }) {
     )
       .then((response) => response.json())
       .then((data) => setQuoteList(data.data));
+  }
+
+  function goToAuthor() {
+    let randomPage = parseInt(Math.random(Math.random()) * 7000);
+    console.log(
+      "https://quote-garden.herokuapp.com/api/v3/quotes?page=" +
+        String(randomPage) +
+        "&author" +
+        quoteList[0].quoteAuthor
+    );
+    fetch(
+      "https://quote-garden.herokuapp.com/api/v3/quotes?author=" +
+        quoteList[0].quoteAuthor
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setQuoteList(data.data);
+      });
   }
   //   useEffect(() => {
   //     console.log(quoteList);
@@ -35,8 +54,10 @@ const Quote = function Quote({ getRandomQuote }) {
           quoteList.map((item) => (
             <div key={item._id}>
               <p>{item.quoteText}</p>
-              <h3>{item.quoteAuthor}</h3>
-              <h5>{item.quoteGenre}</h5>
+              <div onClick={() => goToAuthor()} className="authorContainer">
+                <h3>{item.quoteAuthor}</h3>
+                <h5>{item.quoteGenre}</h5>
+              </div>
             </div>
           ))
         ) : (
